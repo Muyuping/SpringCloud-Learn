@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: muyupingmicroservice                           #Eureka中微服务的名字
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloud
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver              # 驱动\
+    dbcp2:
+      min-idle: 5                                           # 数据库连接池的最小维持连接数
+      initial-size: 5                                       # 初始化连接数
+      max-total: 5                                          # 最大连接数
+      max-wait-millis: 200                                  # 等待连接获取的最大超时时间
+server:
+  port: 8081
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+  instance:
+    instance-id: microservicecloud-dept8001         #改status，这个字段含义是做负载均衡，消费者通过同一个微服务名字，访问不同的实例，实例工程代码相同，数据库不同
+    prefer-ip-address: true                         #点击status链接左下角显示服务IP地址
+
+info:
+  app.name: atguigu-microservicecloud
+  company.name: www.muyuping.com
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}
